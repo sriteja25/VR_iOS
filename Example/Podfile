@@ -1,0 +1,24 @@
+platform :ios, '11.0'
+use_frameworks!
+
+target 'ASPVideoPlayer_Example' do
+  pod 'ASPVideoPlayer', :path => '../'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+
+  target 'ASPVideoPlayer_Tests' do
+    inherit! :search_paths
+  end
+
+  target 'ASPVideoPlayer_ExampleUITests' do
+    inherit! :search_paths
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = '4.0'
+    end
+  end
+end
